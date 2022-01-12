@@ -36,7 +36,6 @@ export class MapContainer extends Component {
     getServiceId = async () => {
         const response = await fetch('http://localhost:3001/services/GoogleMaps');
         const data = await response.json();
-        console.log(data)
         this.setState({ service_id: data.service_id })
     }
 

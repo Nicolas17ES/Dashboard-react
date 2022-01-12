@@ -10,9 +10,8 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/Protected/ProtectedRoute';
 import AdminPanel from './pages/Admin/AdminPanel';
 import ProtectedRouteAdmin from './components/Protected/ProtectedRouteAdmin';
-import Weather from './components/services/Weather/Weather';
-import News from './components/services/News/News';
-import GoogleMaps from './components/services/GoogleMaps/GoogleMaps'
+import { DndProvider } from 'react-dnd';
+import {HTML5Backend} from 'react-dnd-html5-backend'
 
 export const UserContext = createContext(null)
 
@@ -47,38 +46,40 @@ function App() {
   };
 
   return (
-    <div className="App main">
-      
-
-      {/* ROUTES */}
-      <BrowserRouter>
-
-        <Nav name={name} setName={setName} user={user} />
-        <main>
-          <UserContext.Provider value={{ user }}>
-
-            <Routes>
-
-              <Route path="/" element={<Home name={name} />} />
-              <Route path="/login" element={<LogIn setName={setName} />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/dashboard" element={<Dashboard user={user} />} />
-
-              <Route element={<ProtectedRouteAdmin />}>
-                <Route path="/admin" element={< AdminPanel />} />
-              </Route>
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/userDashboard" element={<UserDashboard />} />
-              </Route>
-
-            </Routes>
-          </UserContext.Provider>        
-        </main>
-      </BrowserRouter>
+    <DndProvider backend={HTML5Backend}>
+      <div className="App main">
 
 
-    </div>
+        {/* ROUTES */}
+        <BrowserRouter>
+
+          <Nav name={name} setName={setName} user={user} />
+          <main>
+            <UserContext.Provider value={{ user }}>
+
+              <Routes>
+
+                <Route path="/" element={<Home name={name} />} />
+                <Route path="/login" element={<LogIn setName={setName} />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/dashboard" element={<Dashboard user={user} />} />
+
+                <Route element={<ProtectedRouteAdmin />}>
+                  <Route path="/admin" element={< AdminPanel />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/userDashboard" element={<UserDashboard />} />
+                </Route>
+
+              </Routes>
+            </UserContext.Provider>
+          </main>
+        </BrowserRouter>
+
+
+      </div>
+    </DndProvider>
   );
 }
 
