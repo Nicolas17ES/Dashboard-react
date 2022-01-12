@@ -1,0 +1,72 @@
+.access{
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 130px;
+
+}
+
+
+form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+}
+
+
+
+.google-btn {
+  width: 300px;
+  height: 42px;
+  background-color: #0d6efd;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+}
+.google-icon-wrapper {
+    position: absolute;
+    margin: 3px;
+    width: 35px;
+    height: 35px;
+    border-radius: 2px;
+    background-color: #fff;
+  }
+  .google-icon {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+  }
+  .btn-text {
+    float: right;
+    margin: 11px 79px 0 0;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+  }
+  btn-text:hover {
+    box-shadow: 0 0 6px #4285f4;
+  }
+  btn-text:active {
+    background: #1669F2;
+  }
+
+
+
+
+/* form .form-floating:focus-within {
+  z-index: 2;
+}
+
+form .input-form[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+form .input-form[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+} */

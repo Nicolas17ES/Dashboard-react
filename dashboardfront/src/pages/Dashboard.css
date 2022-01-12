@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+}
+.body {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #10182f;
+  width:100%;
+}
+.container {
+  display: flex;
+  max-width: 1400px;
+  justify-content: space-evenly;
+  
+  flex-wrap: wrap;
+}
+
+.tag-purple {
+  background-color: #5e76bf;
+}
+.tag-pink {
+  background-color: #cd5b9f;
+}
+

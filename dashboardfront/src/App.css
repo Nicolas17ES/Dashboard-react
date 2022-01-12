@@ -1,0 +1,10 @@
+.main{
+  width: 100%;
+  min-height: 1400px;
+  background-image: url('../public/images/mesa-flor.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
+
+
