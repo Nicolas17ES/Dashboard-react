@@ -31,7 +31,6 @@ const UserDashboard = () => {
                             serviceName.push(data[i].name)
                         }
                         setServices(serviceName);
-                        console.log(services)
                     }
                 } catch (e) {
                     console.log(e)
@@ -40,33 +39,36 @@ const UserDashboard = () => {
         )();
     }, []);
 
-    let weatherService;
-    if (services.includes('Weather')) {
-        < Weather exists={true} user={user}/>
-    }
-    let newsService;
-    if (services.includes('News')) {
-        newsService = < News exists={true} user={user} />
-    }
-    let googleService;
-    if (services.includes('GoogleMaps')) {
-        googleService = < GoogleMaps exists={true} user={user} />
-    }
+    // let weatherService;
+    // if (services.includes('Weather')) {
+    //     < Weather exists={true} user={user} />
+    // }
+    // let newsService;
+    // if (services.includes('News')) {
+    //     newsService = < News exists={true} user={user} />
+    // }
+    // let googleService;
+    // if (services.includes('GoogleMaps')) {
+    //     googleService = < GoogleMaps exists={true} user={user} />
+    // }
 
 
     const ServiceList = [
         {
             id: 1,
-            name: < Weather exists={true} user={user} />
+            name: < Weather exists={true} user={user} />,
+            component: "Weather",
             // ...((services.includes('Weather'))) && { name: < Weather exists={true} user={user} />} 
         },
         {
             id: 2,
-            name: <News exists={true} user={user} /> 
+            name: <News exists={true} user={user} />,
+            component: "News",
         },
         {
             id: 3,
-            name: <GoogleMaps exists={true} user={user}  /> 
+            name: <GoogleMaps exists={true} user={user} />,
+            component: "GoogleMaps",
         }
     ]
 
@@ -80,7 +82,12 @@ const UserDashboard = () => {
     }));
     const addImageToBoard = (id) => {
         const serviceList = ServiceList.filter((service) => id === service.id)
+        // console.log(serviceList[0].component)
+        // console.log(services)
         setBoard((board) => [...board, serviceList[0]])
+        
+       
+
     }
 
 
@@ -89,7 +96,9 @@ const UserDashboard = () => {
         <>
             <div className="myServices">
                 {ServiceList.map((service) => {
-                    return <Service draggable={service.name} id={service.id} />;
+                    if (services.includes(service.component)) {
+                        return <Service draggable={service.name} id={service.id} />;
+                    }
                 })}
                 {/* <h1>Your private dashboard</h1>
                 {newsService}

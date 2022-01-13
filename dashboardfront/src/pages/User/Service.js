@@ -9,7 +9,6 @@ function Service({ draggable, id }) {
             isDragging: !!monitor.isDragging(),
         }),
     }));
-    console.log(id)
     
 
     return <div ref={drag}>
