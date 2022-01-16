@@ -124,9 +124,6 @@ const News = (props) => {
                                     <div className="news-data">
                                         <p className="title">{newsData.title}</p>
                                         <p className="description">{newsData.description}</p>
-                                        {/* <p className="content">{newsData.content}</p>
-                                        <p className="publishedAt">{newsData.publishedAt}</p> */}
-                                        {/* <p className="source">{newsData.source}</p> */}
                                         <button onClick={nextNew} className="arrow">&#8594;</button>
 
                                     </div>

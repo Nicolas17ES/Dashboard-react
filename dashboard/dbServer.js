@@ -12,6 +12,14 @@ const { authorizationUser } = require('./userAuth')
 const passport = require("passport");
 var bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser")
+const fetch = require("node-fetch");
+const path = require("path")
+const Amadeus = require("amadeus");
+const { CLIENT_ID, CLIENT_SECRET } = require('./config');
+
+
+
+
 require('./passport-setup')
 
 
@@ -248,7 +256,7 @@ app.post('/services', authorizationAdmin, (req, res) => {
 //Get users services
 
 app.get('/user/dashboard/:user_id', authorizationUser, (req, res) => {
-    try{
+    try {
         const user_id = req.params.user_id;
         db.getConnection(async (err, connection) => {
             if (err) throw (err)
@@ -319,7 +327,7 @@ app.delete('/user/dashboard', authorizationUser, (req, res) => {
 //GET SERVICE BY NAME
 
 app.get('/services/:name', (req, res) => {
-    try{
+    try {
         const name = req.params.name;
         db.getConnection(async (err, connection) => {
             if (err) throw (err)
@@ -334,7 +342,7 @@ app.get('/services/:name', (req, res) => {
             })
         }) //end of connection.query()
 
-    } catch(e){
+    } catch (e) {
         console.log(e)
 
     }
@@ -346,6 +354,74 @@ app.get('/services/:name', (req, res) => {
 
 
 
-///GOOGLE//
+///skyscanner//
+app.post('/user/dashboard/flights/search', async (req, res) => {
+    const currency = req.body.currency;
+    const origin = req.body.origin;
+    const destination = req.body.destination;
+    const departure_at = req.body.departure_at;
+    const return_at = req.body.return_at;
+    const direct = req.body.direct;
+    const limit = 30;
+    const page = 1;
+    const sorting = 'price';
+    const unique = false;
+    const one_way = req.body.one_way;
+    const apiKey = 'aa6f380200af6b5bcb9395028f8f4d13'
+
+    //AMADEUS TOKEN 1ST//
+    const getAmadeusKey = await fetch('https://test.api.amadeus.com/v1/security/oauth2/token', {
+        method: "POST",
+        body: new URLSearchParams({
+            "grant_type": "client_credentials",
+            "client_id": process.env.CLIENT_ID_AMADEUS,
+            "client_secret": process.env.CLIENT_SECRET_AMADEUS
+        })
+    })
+    const amadeusKey = await getAmadeusKey.json();
+    const token = amadeusKey.access_token;
+
+    //DESTINATION && RETURN IATA CODES//
+    const airports = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${origin}`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+
+    const airportData = await airports.json();
+    const originIata = airportData.data[0].iataCode
+
+    const airports2 = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${destination}`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    const airportData2 = await airports2.json();
+    const destinationIata = airportData2.data[0].iataCode
+
+    const delay = async () => {
+        const airports2 = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${destination}`, {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        })
+
+        const airportData2 = await airports2.json();
+        console.log(airportData2)
+        let destinationIata = airportData2.data[0].iataCode
+        const response = await fetch(`https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin=${originIata}&destination=${destinationIata}&departure_at=${departure_at}&return_at=${return_at}&unique=${unique}&sorting=${sorting}&direct=${direct}&currency=${currency}&limit=${limit}&page=${page}&one_way=${one_way}&token=${apiKey}`)
+        console.log(response)
+        const data = await response.json();
+        console.log(data)
+        res.send(data)
+    }
+    setTimeout(delay, 1000);
+
+   
+})
+
+
+//AMADEUS KEY//
+
 
 

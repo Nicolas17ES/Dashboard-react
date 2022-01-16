@@ -4,6 +4,7 @@ import Weather from '../../components/services/Weather/Weather';
 
 import News from '../../components/services/News/News';
 import GoogleMaps from '../../components/services/GoogleMaps/GoogleMaps'
+import FlightSearch from '../../components/services/Skyscanner/Skyscanner'
 import Service from './Service';
 import { useDrop } from 'react-dnd';
 
@@ -31,6 +32,7 @@ const UserDashboard = () => {
                             serviceName.push(data[i].name)
                         }
                         setServices(serviceName);
+                        console.log(services)
                     }
                 } catch (e) {
                     console.log(e)
@@ -39,36 +41,26 @@ const UserDashboard = () => {
         )();
     }, []);
 
-    // let weatherService;
-    // if (services.includes('Weather')) {
-    //     < Weather exists={true} user={user} />
-    // }
-    // let newsService;
-    // if (services.includes('News')) {
-    //     newsService = < News exists={true} user={user} />
-    // }
-    // let googleService;
-    // if (services.includes('GoogleMaps')) {
-    //     googleService = < GoogleMaps exists={true} user={user} />
-    // }
-
-
     const ServiceList = [
         {
-            id: 1,
+            id: 0,
             name: < Weather exists={true} user={user} />,
             component: "Weather",
-            // ...((services.includes('Weather'))) && { name: < Weather exists={true} user={user} />} 
         },
         {
-            id: 2,
+            id: 1,
             name: <News exists={true} user={user} />,
             component: "News",
         },
         {
-            id: 3,
+            id: 2,
             name: <GoogleMaps exists={true} user={user} />,
             component: "GoogleMaps",
+        },
+        {
+            id: 3,
+            name: <FlightSearch exists={true} user={user} />,
+            component: "FlightSearch",
         }
     ]
 
@@ -82,15 +74,13 @@ const UserDashboard = () => {
     }));
     const addImageToBoard = (id) => {
         const serviceList = ServiceList.filter((service) => id === service.id)
-        // console.log(serviceList[0].component)
-        // console.log(services)
         setBoard((board) => [...board, serviceList[0]])
-        
-       
-
+        const number = serviceList[0].id
+        const toHide = document.querySelectorAll('[draggable="true"]')
+        for (let i = 0; i < toHide.length; i++) {
+            toHide[number].style.display = "none";
+        }
     }
-
-
 
     return (
         <>
@@ -100,11 +90,8 @@ const UserDashboard = () => {
                         return <Service draggable={service.name} id={service.id} />;
                     }
                 })}
-                {/* <h1>Your private dashboard</h1>
-                {newsService}
-                {googleService}
-                {weatherService} */}
             </div>
+
             <div className="Board" ref={drop}>
                 {board.map((service) => {
                     return <Service draggable={service.name} id={service.id} />
@@ -115,3 +102,16 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
+
+
+// skyscanner search flight
+//google translate api
+//youtube search
+// google seaarch api
+//crypto currency https://rapidapi.com/BraveNewCoin/api/bravenewcoin
+// market data
+// Shazam api documentation
+//Amazon Product/Reviews/Keywords API Documentation
+//full contact api https://www.fullcontact.com/developer-portal/
+//Twitter or facebook api + oauth
+//

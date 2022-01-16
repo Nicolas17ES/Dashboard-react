@@ -12,6 +12,7 @@ import AdminPanel from './pages/Admin/AdminPanel';
 import ProtectedRouteAdmin from './components/Protected/ProtectedRouteAdmin';
 import { DndProvider } from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend'
+import FlightInfo from './pages/User/Flights/FlightInfo';
 
 export const UserContext = createContext(null)
 
@@ -63,6 +64,7 @@ function App() {
                 <Route path="/login" element={<LogIn setName={setName} />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<Dashboard user={user} />} />
+                <Route path="/userDasboard/flights" element={<FlightInfo />} />
 
                 <Route element={<ProtectedRouteAdmin />}>
                   <Route path="/admin" element={< AdminPanel />} />
