@@ -93,13 +93,19 @@ const Weather = (props) => {
 
            
                         <div className="container2">
-                            <input
-                                className="input"
+                            <div className="group">      
+                                <input 
                                 placeholder="Enter city..."
                                 onChange={e => setCity(e.target.value)}
                                 value={city}
                                 onKeyPress={getWeather}
-                            />
+                                className="input-contact" 
+                                type="text"
+                                ></input>
+                                <span className="highlight"></span>
+                                <span className="bar"></span>
+                                <label className="label-contact">Name</label>
+                            </div>
 
                             {typeof weatherData.main === 'undefined' ? (
                                 <div>

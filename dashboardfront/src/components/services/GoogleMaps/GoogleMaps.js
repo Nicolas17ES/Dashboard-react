@@ -184,7 +184,7 @@ export class MapContainer extends Component {
                     </ModalBody>
                     <ModalFooter>
 
-                        <button className="button-74" onClick={this.handleClose}>
+                    <button className="button-74" onClick={this.handleClose}>
                             Close
                     </button>
                     </ModalFooter>

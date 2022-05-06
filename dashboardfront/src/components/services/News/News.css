@@ -60,7 +60,7 @@
     margin-bottom: 40px;
 }
 
-.input-news{
+/* .input{
     padding: 5px;
     width: 180px; 
     border: 1px solid lightgray;
@@ -72,7 +72,113 @@
 
 .input:focus{
     outline: none;
+} */
+
+
+/* input */
+/* inputs */
+
+.group{ 
+  position:relative; 
+  margin-bottom:45px; 
 }
+.input-contact{
+  font-size:14px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  color:#171830; 
+  background-color: #fdf5e6;
+  border-bottom:1px solid #422800;
+}
+.input-contact:focus{ 
+    outline:none; 
+}
+
+/* LABEL ======================================= */
+.label-contact{
+  color:#422800; 
+  font-size:16px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left: 0;
+  top: -10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.input-contact:focus ~ .label-contact, .input-contact:valid ~ .label-contact{
+  top:-25px;
+  font-size:14px;
+  color:rgba(250, 235, 208, 0.6);
+}
+
+/* BOTTOM BARS ================================= */
+.bar{ 
+    position:relative; 
+    display:block; 
+    width:300px;
+}
+
+.bar:before, .bar:after 	{
+  content:'';
+  height:3px; 
+  width:0;
+  bottom:-1px; 
+  position:absolute;
+  background:#422800; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.input-contact:focus ~ .bar:before, .input-contact:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+.input-contact:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#422800; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#422800; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#422800; }
+  to 	{ width:0; background:transparent; }
+}
+/* input */
 .title{
     font-size: 12px;
     font-weight: 200;
@@ -96,7 +202,6 @@
 
 /* CSS */
 .button-74 {
- 
   height: 50px;
   background-color: #fbeee0;
   border: 2px solid #422800;
@@ -189,14 +294,10 @@
    background-color: rgba(215, 253, 242, 0.6);
 }
 
-.modal-header{
-  background-color: #fdf5e6;
-}
+
 .modal-body{
   background-color: #fdf5e6;
 }
-.modal-footer{
-  background-color: #fdf5e6;
-}
+
 
 

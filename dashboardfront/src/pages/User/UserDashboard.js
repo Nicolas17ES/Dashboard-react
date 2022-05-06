@@ -7,6 +7,7 @@ import GoogleMaps from '../../components/services/GoogleMaps/GoogleMaps'
 import FlightSearch from '../../components/services/Skyscanner/Skyscanner'
 import Service from './Service';
 import { useDrop } from 'react-dnd';
+import '../Dashboard.css'
 
 
 const UserDashboard = () => {
@@ -82,8 +83,15 @@ const UserDashboard = () => {
         }
     }
 
+    console.log(services.length)
+
     return (
-        <>
+        <div className="user-dash">
+            <div className="text-dash">
+                <h1 className="home-title">Your Personal Dashboard</h1>
+            <h3 className="home-text">{services.length > 0 ? '' : 'No services added yet. Go to Dashboard to add some.'}</h3>
+            </div>
+
             <div className="myServices">
                 {ServiceList.map((service) => {
                     if (services.includes(service.component)) {
@@ -97,7 +105,7 @@ const UserDashboard = () => {
                     return <Service draggable={service.name} id={service.id} />
                 })}
             </div>
-        </>
+        </div>
     );
 };
 

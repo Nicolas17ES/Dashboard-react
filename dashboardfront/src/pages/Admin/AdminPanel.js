@@ -1,9 +1,10 @@
 import React from 'react';
 import AddServices from '../../components/Admin/AddService'
+import '../Dashboard.css'
+
 const AdminPanel = () => {
     return (
-        <div>
-            <h1>Your admin Panel</h1>
+        <div className="admin-panel">
             <AddServices />
         </div>
     );

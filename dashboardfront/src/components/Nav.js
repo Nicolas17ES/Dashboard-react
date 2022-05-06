@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import '../pages/Dashboard.css'
 
 const Nav = (props) => {
 
@@ -51,12 +52,13 @@ const Nav = (props) => {
             </li>
         )
     }
+    
 
 
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <nav className="navbar navbar-expand-md  mb-4">
             <div className="container-fluid">
-                <Link to="/" className="navbar-brand">Home</Link>
+                <Link to="/" className="navbar-brand">DASH</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -70,11 +72,6 @@ const Nav = (props) => {
                         </li>
                         {admin}
                     </ul>
-                    <form className="d-flex me-5">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-
                     {menu}
                 </div>
             </div>

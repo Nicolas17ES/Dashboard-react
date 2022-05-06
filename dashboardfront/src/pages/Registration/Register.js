@@ -25,9 +25,12 @@ const Register = () => {
       })
     });
     console.log(response)
-    if (response.status === 201) {
-      navigate('/login')
+    if (response) {
+      navigate('/')
     }
+    // if (response.status === 201) {
+    //   navigate('/login')
+    // }
   }
 
 

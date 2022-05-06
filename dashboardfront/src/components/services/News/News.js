@@ -108,14 +108,19 @@ const News = (props) => {
                     <div className="card-body">
 
                         <div className="container2">
-                            <input
-                                className="input-news"
-                                placeholder="Search for news..."
+                            <div className="group">      
+                                <input placeholder="Search for news..."
                                 onChange={e => setKeyword(e.target.value)}
                                 value={keyword}
                                 onKeyPress={getNews}
-                            />
-
+                                className="input-contact" 
+                                type="text"
+                                ></input>
+                                <span className="highlight"></span>
+                                <span className="bar"></span>
+                                <label className="label-contact">Name</label>
+                            </div>
+                       
                             {typeof newsData === '' ? (
                                 <div>
                                     <p className="title">Look for news</p>

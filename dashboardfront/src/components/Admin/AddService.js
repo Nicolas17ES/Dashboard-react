@@ -39,9 +39,9 @@ export default function AddService() {
     return (
         <div>
             <form onSubmit={submit}>
-                <h1 className="h3 mb-3 fw-normal">Submit service data</h1>
+                <h1 className="home-title mb-5 mt-4"> YOUR ADMIN PANEL</h1>
 
-                <div className="form-floating">
+                <div className="form-floating mt-5">
                     <input type="text" className="form-control" id="name" placeholder="Name" required
                         onChange={e => setName(e.target.value)}
                     />
