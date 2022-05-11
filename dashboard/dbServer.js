@@ -249,7 +249,10 @@ app.post('/services', authorizationAdmin, (req, res) => {
 
 }) //end of db.getConnection()
 
-
+//welcome, register via google, home page, go to empty profile, go to dashboard, select services, show them in your profile
+//log in via google
+//normal login as admin, show admin panel on top
+// access all services => flights, news, weather
 
 //PERSONAL DASHBOARD
 
@@ -367,6 +370,7 @@ app.post('/user/dashboard/flights/search', async (req, res) => {
     const sorting = 'price';
     const unique = false;
     const one_way = req.body.one_way;
+    // console.log("curre " + currency + "departure" + departure_at + "return" + return_at + "direct" + direct + "one wat" + one_way) 
     const apiKey = 'aa6f380200af6b5bcb9395028f8f4d13'
 
     //AMADEUS TOKEN 1ST//
@@ -380,6 +384,8 @@ app.post('/user/dashboard/flights/search', async (req, res) => {
     })
     const amadeusKey = await getAmadeusKey.json();
     const token = amadeusKey.access_token;
+    
+
 
     //DESTINATION && RETURN IATA CODES//
     const airports = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${origin}`, {
@@ -391,13 +397,16 @@ app.post('/user/dashboard/flights/search', async (req, res) => {
     const airportData = await airports.json();
     const originIata = airportData.data[0].iataCode
 
-    const airports2 = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${destination}`, {
-        headers: {
-            "Authorization": "Bearer " + token
-        }
-    })
-    const airportData2 = await airports2.json();
-    const destinationIata = airportData2.data[0].iataCode
+    // const airports2 = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${destination}`, {
+    //     headers: {
+    //         "Authorization": "Bearer " + token
+    //     }
+    // })
+    
+
+    // const airportData2 = await airports2.json();
+    // // const destinationIata = await airportData2.data[0].iataCode
+    
 
     const delay = async () => {
         const airports2 = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${destination}`, {
@@ -406,13 +415,15 @@ app.post('/user/dashboard/flights/search', async (req, res) => {
             }
         })
 
+
         const airportData2 = await airports2.json();
-        console.log(airportData2)
-        let destinationIata = airportData2.data[0].iataCode
+        let destinationIata = await airportData2.data[0].iataCode
+        
         const response = await fetch(`https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin=${originIata}&destination=${destinationIata}&departure_at=${departure_at}&return_at=${return_at}&unique=${unique}&sorting=${sorting}&direct=${direct}&currency=${currency}&limit=${limit}&page=${page}&one_way=${one_way}&token=${apiKey}`)
-        console.log(response)
+        const test = `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin=${originIata}&destination=${destinationIata}&departure_at=${departure_at}&return_at=${return_at}&unique=${unique}&sorting=${sorting}&direct=${direct}&currency=${currency}&limit=${limit}&page=${page}&one_way=${one_way}&token=${apiKey}`
+        console.log(test)
         const data = await response.json();
-        console.log(data)
+    
         res.send(data)
     }
     setTimeout(delay, 1000);
