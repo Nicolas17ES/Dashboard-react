@@ -25,6 +25,10 @@
 .tag-pink {
   background-color: #cd5b9f;
 }
+
+.navbar{
+  background-color: rgba(252, 215, 175, .7);
+}
 .navbar-nav .nav-item .nav-link{
   font-weight: 500;
   color: #422800;
